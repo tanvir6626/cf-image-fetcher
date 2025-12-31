@@ -27,15 +27,12 @@ function loadCookiesForDomain(domain) {
   if (!fs.existsSync(STORAGE_FILE)) return '';
 
   const state = JSON.parse(fs.readFileSync(STORAGE_FILE, 'utf-8'));
-  if (!state.cookies) return '';
+  if (!state.cookies || !state.cookies.length) return '';
 
-  const cookies = state.cookies.filter(c =>
-    domain === c.domain.replace(/^\./, '') ||
-    domain.endsWith(c.domain.replace(/^\./, ''))
-  );
-
-  return cookies.map(c => `${c.name}=${c.value}`).join('; ');
+  // 🔴 IMPORTANT: send ALL cookies
+  return state.cookies.map(c => `${c.name}=${c.value}`).join('; ');
 }
+
 
 /* ---------- Health Check ---------- */
 
@@ -87,3 +84,8 @@ app.get('/image', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+;;;;;;;;;;;;///...
+
+
+
+
