@@ -20,7 +20,9 @@ async function loadCookies() {
 }
 
 await loadCookies();
-
+app.get('/', (req, res) => {
+  res.status(200).send('OK');
+});
 app.get('/image', async (req, res) => {
   try {
     const imageUrl = req.query.url;
