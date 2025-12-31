@@ -7,15 +7,7 @@ import { chromium } from 'playwright';
   });
 
   const page = await context.newPage();
-
-  console.log('Opening website...');
   await page.goto('https://samakal.com', { waitUntil: 'networkidle' });
 
-  console.log(`
-====================================
-ACTION REQUIRED:
-Solve Cloudflare manually in browser
-Then close the browser window
-====================================
-`);
+  console.log('Solve Cloudflare, then close browser');
 })();
